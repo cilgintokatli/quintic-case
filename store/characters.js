@@ -2,7 +2,7 @@ export const state = () => ({
   characters: [],
   currentPage: 1,
   totalPages: 1,
-  limit: 10, // default
+  limit: 10,
 });
 
 export const mutations = {
