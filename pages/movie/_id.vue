@@ -9,7 +9,13 @@
     <div v-else-if="movie">
       <div class="flex flex-row items-center justify-center gap-5 md:gap-20">
         <div v-if="movie.imageUrl">
-          <img :src="movie.imageUrl" :alt="movie.name" />
+          <img
+            :src="movie.imageUrl"
+            :alt="movie.name"
+            rel="preload"
+            width="300"
+            height="450"
+          />
         </div>
         <div>
           <h1 class="text-3xl">{{ movie.name }}</h1>
