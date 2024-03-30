@@ -13,6 +13,8 @@
     <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
     <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
     <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+    <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+    <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
     <div class="h-2 bg-gray-200 rounded-full"></div>
   </div>
 </template>

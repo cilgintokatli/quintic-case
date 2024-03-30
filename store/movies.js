@@ -31,7 +31,7 @@ export const actions = {
             .then((response) => {
               const posterPath = response.data.results[0]?.poster_path;
               if (posterPath) {
-                return `https://image.tmdb.org/t/p/w500${posterPath}`;
+                return `https://image.tmdb.org/t/p/w300${posterPath}`;
               } else {
                 return null;
               }

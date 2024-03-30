@@ -4,12 +4,14 @@
       <nav>
         <div class="project-title">Quintic test case</div>
 
-        <ul>
+        <div class="menu-items">
           <SearchBox></SearchBox>
-          <li v-for="menuItem in menuItems" :key="menuItem.path">
-            <NuxtLink :to="menuItem.path">{{ menuItem.label }}</NuxtLink>
-          </li>
-        </ul>
+          <ul>
+            <li v-for="menuItem in menuItems" :key="menuItem.path">
+              <NuxtLink :to="menuItem.path">{{ menuItem.label }}</NuxtLink>
+            </li>
+          </ul>
+        </div>
         <button
           aria-label="Menü"
           @click="isMenuOpen = !isMenuOpen"
@@ -39,11 +41,7 @@
         <SearchBox></SearchBox>
         <nav>
           <ul>
-            <li
-              v-for="menuItem in menuItems"
-              :key="menuItem.path"
-              @click="isMenuOpen = !isMenuOpen"
-            >
+            <li v-for="menuItem in menuItems" :key="menuItem.path">
               <NuxtLink :to="menuItem.path">{{ menuItem.label }}</NuxtLink>
             </li>
           </ul>
@@ -66,6 +64,11 @@ export default {
         { path: "/character", label: "Characters" },
       ],
     };
+  },
+  watch: {
+    $route() {
+      this.isMenuOpen = false;
+    },
   },
 };
 </script>
@@ -96,17 +99,18 @@ export default {
         display: block;
       }
     }
-    ul {
+    .menu-items {
       display: flex;
       align-items: center;
       @media (max-width: $layout-breakpoint) {
         display: none;
       }
-
-      li {
-        list-style: none;
-        display: inline-block;
-        padding: 0 20px;
+      ul {
+        li {
+          list-style: none;
+          display: inline-block;
+          padding: 0 20px;
+        }
       }
     }
   }

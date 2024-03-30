@@ -1,10 +1,12 @@
 <template>
-  <div>
-    <h2 class="text-xl">Search Results:</h2>
+  <div class="flex text-xl items-baseline">
+    <h2>Search Results:</h2>
     <div v-if="result">
-      <nuxt-link :to="`${searchTerm}/${result._id}`" class="underline">{{
-        result.name
-      }}</nuxt-link>
+      <nuxt-link
+        :to="`${searchTerm}/${result._id}`"
+        class="underline font-bold"
+        >{{ result.name }}</nuxt-link
+      >
     </div>
     <p v-else>No results</p>
   </div>

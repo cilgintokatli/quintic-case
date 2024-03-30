@@ -1,10 +1,13 @@
 <template>
   <div>
     <div v-if="isStoreEmpty">
-      <p>Movie detail is loading...</p>
+      <div class="grid grid-cols-2 gap-10 max-w-2xl m-auto">
+        <SkeletonCard></SkeletonCard>
+        <SkeletonCard></SkeletonCard>
+      </div>
     </div>
     <div v-else-if="movie">
-      <div class="flex flex-row items-center justify-center gap-20">
+      <div class="flex flex-row items-center justify-center gap-5 md:gap-20">
         <div v-if="movie.imageUrl">
           <img :src="movie.imageUrl" :alt="movie.name" />
         </div>
@@ -25,12 +28,14 @@
       </div>
     </div>
     <div v-else>
-      <p>Movie not found 404</p>
+      <p>Movie not found</p>
     </div>
   </div>
 </template>
 
 <script>
+import SkeletonCard from "../../components/SkeletonCard.vue";
+
 export default {
   head() {
     return {
