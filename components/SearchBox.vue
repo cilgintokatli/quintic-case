@@ -9,6 +9,7 @@
       class="border border-black md:rounded-none md:rounded-l-md rounded-md px-5 py-2"
     />
     <select
+      aria-label="Search By"
       v-model="selectedEndpoint"
       class="border border-black md:border-l-0 md:rounded-r-md md:rounded-none rounded-md bg-gray-100 h-full px-5 py-2"
     >
@@ -16,6 +17,7 @@
       <option value="character">Characters</option>
     </select>
     <button
+      aria-label="Search button"
       @click="search"
       class="md:ml-3 h-full px-4 py-3 md:py-0 bg-gray-100 border border-black rounded-md"
     >

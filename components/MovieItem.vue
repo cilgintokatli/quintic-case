@@ -29,7 +29,7 @@ export default {
     background: green;
   }
   &:nth-of-type(even) {
-    background: #9f9f9f;
+    background: black;
   }
 }
 .movie-item {

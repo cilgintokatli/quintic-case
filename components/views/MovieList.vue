@@ -22,5 +22,9 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 400px;
   gap: 50px 30px;
+
+  @media (max-width: $layout-breakpoint) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

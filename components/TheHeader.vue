@@ -10,7 +10,11 @@
             <NuxtLink :to="menuItem.path">{{ menuItem.label }}</NuxtLink>
           </li>
         </ul>
-        <button @click="isMenuOpen = !isMenuOpen" class="mobile-menu-button">
+        <button
+          aria-label="Menü"
+          @click="isMenuOpen = !isMenuOpen"
+          class="mobile-menu-button"
+        >
           <svg
             fill="none"
             height="24"
