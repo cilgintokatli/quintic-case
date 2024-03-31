@@ -56,7 +56,7 @@ export default {
     align-items: end;
     padding: 20px;
     @media (max-width: $layout-breakpoint) {
-      font-size: 12vw;
+      font-size: 6vw;
     }
   }
 
