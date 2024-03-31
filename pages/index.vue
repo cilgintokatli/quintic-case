@@ -1,6 +1,6 @@
 <template>
   <div>
-    <LazyMovieList v-if="isLoading">
+    <LazyMovieList v-if="isStoreEmpty">
       <LazyMoviePlaceholder
         v-for="index in 6"
         :key="index"
