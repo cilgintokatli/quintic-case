@@ -34,24 +34,18 @@
           </svg>
         </button>
       </nav>
-      <div
-        :class="isMenuOpen ? 'block' : 'hidden'"
-        class="mobile-menu w-full mt-10 grid"
-      >
-        <SearchBox></SearchBox>
-        <nav>
-          <ul>
-            <li v-for="menuItem in menuItems" :key="menuItem.path">
-              <NuxtLink :to="menuItem.path">{{ menuItem.label }}</NuxtLink>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <transition name="slide">
+        <LazyMobileMenu
+          :menuItems="menuItems"
+          v-if="isMenuOpen"
+        ></LazyMobileMenu>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
+import MobileMenu from "./MobileMenu.vue";
 import SearchBox from "./SearchBox.vue";
 
 export default {
@@ -73,7 +67,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .header {
   position: relative;
 
@@ -114,21 +108,6 @@ export default {
       }
     }
   }
-  .mobile-menu {
-    gap: 10px;
-    nav {
-      justify-content: center;
-
-      ul {
-        display: block;
-        li {
-          display: block;
-          margin-top: 10px;
-          font-size: 6vw;
-        }
-      }
-    }
-  }
 }
 
 .nuxt-link-exact-active {
@@ -136,5 +115,30 @@ export default {
   text-decoration: underline;
   text-underline-offset: 8px;
   text-decoration-thickness: 2px;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  -moz-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -moz-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+  transition-property: max-height;
+}
+
+.slide-enter-to,
+.slide-leave {
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.slide-enter,
+.slide-leave-to {
+  overflow: hidden;
+  max-height: 0;
 }
 </style>

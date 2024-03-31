@@ -1,9 +1,10 @@
 <template>
   <div class="flex flex-col items-center">
     <CharacterCard :character="character" />
+
     <button
       @click="loadMoreQuotes"
-      class="border border-black rounded-md px-5 py-3 hover:bg-gray-100"
+      class="border border-black rounded-md px-5 py-3 hover:bg-gray-100 min-w-52 cursor-pointer"
       :disabled="allQuotesLoaded"
       :class="allQuotesLoaded ? 'ring-2 ring-red-400 ' : 'ring-2 ring-gray-400'"
     >
@@ -11,35 +12,23 @@
     </button>
     <div v-if="quotes.length">
       <ul>
-        <li
+        <QuoteBlok
           v-for="quote in displayedQuotes"
           :key="quote._id"
-          class="py-10 my-5 max-w-lg"
-        >
-          <blockquote
-            class="text-xl italic text-right font-semibold text-gray-900"
-          >
-            <svg
-              class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 18 14"
-            >
-              <path
-                d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"
-              />
-            </svg>
-            {{ quote.dialog }}
-          </blockquote>
-        </li>
+          :quote="quote"
+        ></QuoteBlok>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import CharacterCard from "../../components/character/CharacterCard.vue";
+
 export default {
+  components: {
+    QuoteBlok: () => import("../../components/character/detail/QuoteBlok.vue"),
+  },
   head() {
     return {
       title: this.character ? this.character.name : "Character",
@@ -53,7 +42,7 @@ export default {
       limit: 5,
       offset: 0,
       buttonText: "Load Quotes",
-      isFirstClick: true,
+      isFirstLoad: true,
     };
   },
   methods: {
@@ -76,9 +65,9 @@ export default {
         if (newQuotes.length < this.limit) {
           this.allQuotesLoaded = true;
           this.buttonText = "No quotes :(";
-        } else if (this.isFirstClick) {
+        } else if (this.isFirstLoad) {
           this.buttonText = "Load More Quotes";
-          this.isFirstClick = false;
+          this.isFirstLoad = false;
         }
       } catch (error) {
         console.error("Error fetching quotes:", error);

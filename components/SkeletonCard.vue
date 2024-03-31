@@ -1,7 +1,7 @@
 <template>
   <div
     role="status"
-    class="w-full p-4 border border-gray-200 rounded-md shadow animate-pulse md:p-6"
+    class="w-full flex flex-col justify-center p-4 border border-gray-200 rounded-md shadow animate-pulse md:p-6"
   >
     <div class="flex items-center mt-4 mb-5">
       <div>

@@ -1,17 +1,15 @@
 <template>
   <div>
     <div class="movie-container">
-      <MovieItem v-for="movie in movies" :key="movie._id" :movie="movie" />
+      <!-- <MovieItem v-for="movie in movies" :key="movie._id" :movie="movie" /> -->
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-import MovieItem from "../MovieItem.vue";
-
 export default {
   name: "MovieList",
-  props: ["movies"],
 };
 </script>
 

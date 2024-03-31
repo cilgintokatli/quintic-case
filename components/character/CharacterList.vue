@@ -1,24 +1,12 @@
 <template>
   <div class="character-container">
-    <CharacterItem
-      v-for="character in characters"
-      :character="character"
-      :key="character._id"
-    ></CharacterItem>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import CharacterItem from "../CharacterItem.vue";
-
 export default {
   name: "CharacterList",
-  props: {
-    characters: {
-      type: Array,
-      required: true,
-    },
-  },
 };
 </script>
 

@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import CharacterCard from "./CharacterCard.vue";
-
 export default {
   props: {
     character: {

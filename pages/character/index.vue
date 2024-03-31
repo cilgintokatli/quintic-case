@@ -16,7 +16,14 @@
     </div>
 
     <!-- Render character list if characters are loaded -->
-    <CharacterList v-if="!loading" :characters="characters"></CharacterList>
+    <LazyCharacterList v-if="!loading">
+      <LazyCharacterItem
+        v-for="character in characters"
+        :character="character"
+        :key="character._id"
+      >
+      </LazyCharacterItem>
+    </LazyCharacterList>
 
     <div class="pagination flex items-center justify-center my-5 gap-5">
       <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
@@ -31,7 +38,8 @@
 <script>
 import SkeletonCard from "../../components/SkeletonCard.vue";
 import SortSelect from "../../components/SortSelect.vue";
-import CharacterList from "../../components/views/CharacterList.vue";
+import CharacterItem from "../../components/character/CharacterItem.vue";
+import CharacterList from "../../components/character/CharacterList.vue";
 
 export default {
   head() {
