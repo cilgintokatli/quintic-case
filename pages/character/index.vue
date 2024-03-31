@@ -72,7 +72,7 @@ export default {
     },
     async fetchCharacters(page) {
       try {
-        this.loading = true; // Set loading state to true
+        this.loading = true;
         await this.$store.dispatch("characters/fetchCharacters", {
           $config: this.$config,
           sort: this.selectedSort,

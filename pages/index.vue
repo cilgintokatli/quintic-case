@@ -1,7 +1,11 @@
 <template>
   <div>
-    <LazyMovieList v-if="isStoreEmpty">
-      <LazySkeletonCard v-for="index in 6" :key="index"></LazySkeletonCard>
+    <LazyMovieList v-if="isLoading">
+      <LazyMoviePlaceholder
+        v-for="index in 6"
+        :key="index"
+        class="placeholder"
+      ></LazyMoviePlaceholder>
     </LazyMovieList>
     <LazyMovieList v-else-if="movies">
       <LazyMovieItem v-for="movie in movies" :key="movie._id" :movie="movie" />
@@ -13,6 +17,7 @@
 import SkeletonCard from "../components/SkeletonCard.vue";
 import MovieItem from "../components/movie/MovieItem.vue";
 import MovieList from "../components/movie/MovieList.vue";
+import MoviePlaceholder from "../components/movie/MoviePlaceholder.vue";
 
 export default {
   name: "IndexPage",
@@ -36,8 +41,19 @@ export default {
   },
   async created() {
     if (this.isStoreEmpty) {
-      await this.$store.dispatch("movies/fetchInitialMovies", this.$config);
+      await this.$store.dispatch("movies/fetchInitialMovies", {
+        $config: this.$config,
+      });
     }
   },
 };
 </script>
+
+<style>
+.placeholder:nth-child(even) {
+  background: black;
+}
+.placeholder:nth-child(odd) {
+  background: green;
+}
+</style>

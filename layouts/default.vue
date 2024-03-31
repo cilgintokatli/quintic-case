@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <TheHeader />
-      <Nuxt />
+      <Nuxt keep-alive />
     </div>
   </div>
 </template>
