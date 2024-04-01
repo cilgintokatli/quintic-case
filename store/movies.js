@@ -1,14 +1,19 @@
 export const state = () => ({
   movies: [],
-  singleMovie: [],
+  allMoviesFetched: false,
 });
 
 export const mutations = {
   SET_MOVIES(state, movies) {
     state.movies = movies;
   },
-  SET_SINGLE_MOVIE(state, singleMovie) {
-    state.singleMovie = singleMovie;
+
+  ADD_MOVIE(state, movie) {
+    state.movies.push(movie);
+  },
+
+  SET_ALL_MOVIES_FETCHED(state, value) {
+    state.allMoviesFetched = value;
   },
 };
 
@@ -59,49 +64,48 @@ export const actions = {
   },
   async fetchSingleMovie({ commit }, { $config, movieID }) {
     try {
-      this.$axios.setToken($config.oneApiSecret, "Bearer");
-
-      // one api movie endpointi için fetch isteği
-
-      const response = await this.$axios.get(
-        `${$config.oneApiBaseURL}/movie/${movieID}`
+      const response = await this.$axios.$get(
+        `${$config.oneApiBaseURL}/movie/${movieID}`,
+        {
+          headers: {
+            Authorization: `Bearer ${$config.oneApiSecret}`,
+          },
+        }
       );
 
-      // her movie elemanına film afişi eklemek için TMBD API'ya paralel async fetch isteği
-      const moviesWithImages = await Promise.all(
-        response.data.docs.map(async (movie) => {
-          const imageUrl = await this.$axios
-            .get(`https://api.themoviedb.org/3/search/movie`, {
-              params: {
-                query: movie.name,
-              },
-              headers: {
-                Authorization: `Bearer ${$config.tmdbApiAccessToken}`,
-              },
-            })
-            .then((response) => {
-              const posterPath = response.data.results[0]?.poster_path;
-              if (posterPath) {
-                return `https://image.tmdb.org/t/p/w300${posterPath}`;
-              } else {
-                return null;
-              }
-            })
-            .catch((error) => {
-              console.error(
-                "tmdb api film afişi fetchlerken bir hata oldu:",
-                error
-              );
-              return null;
-            });
+      const movie = response.docs[0];
 
-          return { ...movie, imageUrl };
+      const imageUrl = await this.$axios
+        .get(`https://api.themoviedb.org/3/search/movie`, {
+          params: {
+            query: movie.name,
+          },
+          headers: {
+            Authorization: `Bearer ${this.$config.tmdbApiAccessToken}`,
+          },
         })
-      );
+        .then((response) => {
+          const posterPath = response.data.results[0]?.poster_path;
+          if (posterPath) {
+            return `https://image.tmdb.org/t/p/w300${posterPath}`;
+          } else {
+            return null;
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "tmdb api film afişi fetchlerken bir hata oldu:",
+            error
+          );
+          return null;
+        });
 
-      commit("SET_SINGLE_MOVIE", moviesWithImages);
+      const movieWithImage = { ...movie, imageUrl };
+
+      // Commit the movie to the store
+      commit("movies/ADD_MOVIE", movieWithImage);
     } catch (error) {
-      console.error("fetchlerken bir hata oldu:", error);
+      console.error("Error fetching movie:", error);
     }
   },
 };

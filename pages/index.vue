@@ -26,11 +26,6 @@ export default {
       title: "Home Page",
     };
   },
-  data() {
-    return {
-      isLoading: true,
-    };
-  },
   computed: {
     movies() {
       return this.$store.getters["movies/getMovies"];
@@ -38,12 +33,16 @@ export default {
     isStoreEmpty() {
       return this.$store.state.movies.movies.length === 0;
     },
+    allMoviesFetched() {
+      return this.$store.state.movies.allMoviesFetched === false;
+    },
   },
   async created() {
-    if (this.isStoreEmpty) {
+    if (this.allMoviesFetched) {
       await this.$store.dispatch("movies/fetchInitialMovies", {
         $config: this.$config,
       });
+      this.$store.commit("movies/SET_ALL_MOVIES_FETCHED", true);
     }
   },
 };
