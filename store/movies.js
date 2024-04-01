@@ -103,7 +103,7 @@ export const actions = {
       const movieWithImage = { ...movie, imageUrl };
 
       // Commit the movie to the store
-      commit("movies/ADD_MOVIE", movieWithImage);
+      commit("ADD_MOVIE", movieWithImage);
     } catch (error) {
       console.error("Error fetching movie:", error);
     }

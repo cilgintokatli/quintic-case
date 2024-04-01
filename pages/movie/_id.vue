@@ -42,58 +42,11 @@ export default {
   methods: {
     async fetchMovie() {
       if (!this.movie) {
-        await this.$store.dispatch("movies/fetchInitialMovies", {
+        await this.$store.dispatch("movies/fetchSingleMovie", {
           $config: this.$config,
           movieID: this.$route.params.id,
         });
       }
-
-      // if (!this.movie) {
-      //   try {
-      //     const movieId = this.$route.params.id;
-      //     const response = await this.$axios.$get(
-      //       `${this.$config.oneApiBaseURL}/movie/${movieId}`,
-      //       {
-      //         headers: {
-      //           Authorization: `Bearer ${this.$config.oneApiSecret}`,
-      //         },
-      //       }
-      //     );
-
-      //     const movie = response.docs[0];
-
-      //     const imageUrl = await this.$axios
-      //       .get(`https://api.themoviedb.org/3/search/movie`, {
-      //         params: {
-      //           query: movie.name,
-      //         },
-      //         headers: {
-      //           Authorization: `Bearer ${this.$config.tmdbApiAccessToken}`,
-      //         },
-      //       })
-      //       .then((response) => {
-      //         const posterPath = response.data.results[0]?.poster_path;
-      //         if (posterPath) {
-      //           return `https://image.tmdb.org/t/p/w300${posterPath}`;
-      //         } else {
-      //           return null;
-      //         }
-      //       })
-      //       .catch((error) => {
-      //         console.error(
-      //           "tmdb api film afişi fetchlerken bir hata oldu:",
-      //           error
-      //         );
-      //         return null;
-      //       });
-
-      //     const movieWithImage = { ...movie, imageUrl };
-
-      //     this.$store.commit("movies/ADD_MOVIE", movieWithImage);
-      //   } catch (error) {
-      //     console.error("Error fetching movie:", error);
-      //   }
-      // }
     },
   },
 };
