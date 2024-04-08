@@ -8,7 +8,12 @@
       ></LazyMoviePlaceholder>
     </LazyMovieList>
     <LazyMovieList v-else-if="movies">
-      <LazyMovieItem v-for="movie in movies" :key="movie._id" :movie="movie" />
+      <LazyMovieItem
+        v-for="(movie, index) in movies"
+        :key="movie._id"
+        :movie="movie"
+        :index="index"
+      />
     </LazyMovieList>
   </div>
 </template>

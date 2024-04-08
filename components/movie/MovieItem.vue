@@ -2,7 +2,13 @@
   <div class="movie-item-container">
     <nuxt-link :to="`/movie/${movie._id}`">
       <div class="movie-item">
-        <img v-if="movie.imageUrl" :src="movie.imageUrl" alt="" />
+        <img
+          v-if="movie.imageUrl"
+          :fetchpriority="isFirstMovie ? 'high' : 'low'"
+          :loading="!isFirstMovie ? 'lazy' : ''"
+          :src="movie.imageUrl"
+          alt=""
+        />
         <div class="movie-title">
           <h2>{{ movie.name }}</h2>
         </div>
@@ -17,6 +23,16 @@ export default {
     movie: {
       type: Object,
       required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+  },
+
+  computed: {
+    isFirstMovie() {
+      return this.index === 0;
     },
   },
 };
@@ -56,7 +72,7 @@ export default {
     align-items: end;
     padding: 20px;
     @media (max-width: $layout-breakpoint) {
-      font-size: 6vw;
+      font-size: 4vw;
     }
   }
 
