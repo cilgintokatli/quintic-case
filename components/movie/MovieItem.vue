@@ -7,7 +7,9 @@
           :fetchpriority="isFirstMovie ? 'high' : 'low'"
           :loading="!isFirstMovie ? 'lazy' : ''"
           :src="movie.imageUrl"
-          alt=""
+          :alt="movie.name"
+          width="300"
+          height="450"
         />
         <div class="movie-title">
           <h2>{{ movie.name }}</h2>
@@ -86,6 +88,7 @@ export default {
     object-fit: cover;
     transition: all 0.6s;
     transform: scale(1.2);
+    aspect-ratio: 2/3;
   }
 }
 </style>
