@@ -11,7 +11,7 @@
 import TheHeader from "../components/TheHeader.vue";
 
 export default {
-  created() {
+  mounted() {
     if (process.client) {
       this.$speedInsights();
     }
