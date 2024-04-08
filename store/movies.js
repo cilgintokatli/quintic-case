@@ -115,8 +115,4 @@ export const getters = {
   getMovieById: (state) => (id) => {
     return state.movies.find((movie) => movie._id === id);
   },
-  getSingleMovie: (state) => state.singleMovie,
-  getSingleMovieById: (state) => (id) => {
-    return state.singleMovie.find((movie) => movie._id === id);
-  },
 };

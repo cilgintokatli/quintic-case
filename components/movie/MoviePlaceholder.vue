@@ -4,7 +4,7 @@
     class="w-full flex flex-col justify-end place-items-end p-4 animate-pulse"
     v-if="isMobile"
   >
-    <div class="h-5 w-full bg-gray-200 rounded-full mb-2.5"></div>
+    <div class="h-4 w-full bg-gray-200 rounded-full mb-2.5"></div>
   </div>
   <div
     class="w-full flex flex-col justify-end place-items-end p-4 animate-pulse"

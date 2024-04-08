@@ -1,5 +1,7 @@
 <template>
   <div>
+    <SpeedInsights />
+
     <div class="container">
       <TheHeader />
       <Nuxt keep-alive />
@@ -8,6 +10,7 @@
 </template>
 
 <script>
+import { SpeedInsights } from "@vercel/speed-insights/nuxt";
 import TheHeader from "../components/TheHeader.vue";
 
 export default {};
