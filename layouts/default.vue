@@ -10,13 +10,7 @@
 <script>
 import TheHeader from "../components/TheHeader.vue";
 
-export default {
-  // mounted() {
-  //   if (process.client) {
-  //     this.$speedInsights();
-  //   }
-  // },
-};
+export default {};
 </script>
 
 <style lang="scss">
