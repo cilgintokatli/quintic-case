@@ -29,7 +29,13 @@ export default {
   head() {
     return {
       title: "Home Page",
-      description: "Home Page for quintic case",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: "Home Page for quintic case",
+        },
+      ],
     };
   },
   computed: {
