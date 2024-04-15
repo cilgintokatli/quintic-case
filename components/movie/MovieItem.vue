@@ -8,8 +8,7 @@
           :loading="!isFirstMovie ? 'lazy' : ''"
           :src="movie.imageUrl"
           :alt="movie.name"
-          width="300"
-          height="450"
+          height="400"
         />
         <div class="movie-title">
           <h2>{{ movie.name }}</h2>
@@ -53,6 +52,11 @@ export default {
 .movie-item {
   position: static;
   overflow: hidden;
+  height: 400px;
+  width: 350px;
+  @media (max-width: $layout-breakpoint) {
+    width: 100%;
+  }
 
   &:hover {
     img {
@@ -80,15 +84,14 @@ export default {
 
   img {
     opacity: 0;
-    height: 400px;
     box-sizing: border-box;
     max-width: 100%;
     max-height: 100%;
+    height: auto;
     width: 100%;
     object-fit: cover;
     transition: all 0.6s;
     transform: scale(1.2);
-    aspect-ratio: 2/3;
   }
 }
 </style>
