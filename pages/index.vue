@@ -29,6 +29,7 @@ export default {
   head() {
     return {
       title: "Home Page",
+      description: "Home Page for quintic case",
     };
   },
   computed: {
