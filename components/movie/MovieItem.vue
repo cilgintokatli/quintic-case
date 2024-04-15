@@ -7,7 +7,7 @@
           :fetchpriority="isFirstMovie ? 'high' : 'low'"
           :loading="!isFirstMovie ? 'lazy' : ''"
           :src="movie.imageUrl"
-          :alt="movie.name"
+          :alt="`${movie.name} poster`"
           height="400"
         />
         <div class="movie-title">
