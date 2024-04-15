@@ -11,11 +11,11 @@
 import TheHeader from "../components/TheHeader.vue";
 
 export default {
-  mounted() {
-    if (process.client) {
-      this.$speedInsights();
-    }
-  },
+  // mounted() {
+  //   if (process.client) {
+  //     this.$speedInsights();
+  //   }
+  // },
 };
 </script>
 

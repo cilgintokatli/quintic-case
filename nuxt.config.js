@@ -20,11 +20,11 @@ export default {
   css: ["~/assets/css/main.css"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/speed-insights.js", mode: "client" }],
+  // plugins: [{ src: "~/plugins/speed-insights.js", mode: "client" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: {
-    dirs: ["~/components", "~/components/views"],
+    dirs: ["~/components"],
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -59,7 +59,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    transpile: ["@vercel/speed-insights"],
-  },
+  // build: {
+  //   transpile: ["@vercel/speed-insights"],
+  // },
 };
